@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
 const config = {
   apiKey: 'e98c3e4cea26c93ad374f49136da7c9aaa646da2',
@@ -10,28 +10,26 @@ const url = config.url + config.uid + '?key=' + config.apiKey + '&completed=true
 
 export class TypeFormDataService {
   constructor() {
-    this.data = undefined;
+    this.data = [];
   }
 
   /**
-   * Returns array of responses
+   * Returns array of responses and caches data
    * @return {Promise.<Array>}
    */
-  fetchData() {
-    const service = this;
-
-    if (this.data) {
-      console.log('using cached data!');
-      return new Promise((resolve) => resolve(service.data));
-    }
-
-    return fetch(url)
+  cacheData() {
+    if (_.isEmpty(this.data)) {
+      return fetch(url)
       .then(res => res.text())
       .then(body => JSON.parse(body))
       .then(data => {
         this.data = data;
         return this.data;
       });
+    }
+
+    const service = this;
+    return new Promise((resolve) => resolve(service.data));
   }
 
   /**
@@ -39,7 +37,7 @@ export class TypeFormDataService {
    * @return {Promise.<Array>}
    */
   getResponses() {
-    return this.fetchData().then(data => data.responses)
+    return this.cacheData().then(data => data.responses)
   }
 
   /**
@@ -47,7 +45,7 @@ export class TypeFormDataService {
    * @return {Promise.<Array>}
    */
   getQuestions() {
-    return this.fetchData().then(data => data.questions)
+    return this.cacheData().then(data => data.questions)
   }
 
   /**
@@ -55,7 +53,7 @@ export class TypeFormDataService {
    * @return {Promise.<Array>}
    */
   getClientList() {
-    return this.fetchData().then((data) => {
+    return this.cacheData().then((data) => {
       let clientList = data.responses.map((response) => {
         return {
           id: response.token,
@@ -67,9 +65,20 @@ export class TypeFormDataService {
     });
   }
 
+  /**
+   * Returns one request object
+   * @return {Promise.<Object>}
+   */
   getSpecificRequest(client) {
-    return this.fetchData().then((data) => {
+    return this.cacheData().then((data) => {
       return data.responses.filter((response) => response.token === client.token && response);
     });
+  }
+
+  /**
+   * Returns new array with client names and submit dates
+   * @return {Promise.<Array>}
+   */
+  formatRequest(request) {
   }
 }

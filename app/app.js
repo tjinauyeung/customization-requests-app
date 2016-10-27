@@ -4,16 +4,16 @@ let service = new TypeFormDataService;
 
 // console.log("LOADING....");
 
-// service.getResponses()
-// 	.then(answers => console.log(answers));
+// service.getQuestions()
+// 	.then(question => console.log(question));
 
 // setTimeout(() => {
 // 	service.getQuestions()
 // 		.then(questions => console.log(questions));
 // }, 1000);
 
-service.getClientList()
-	.then(clientList => console.log(clientList));
+// service.getClientList()
+// 	.then(clientList => console.log(clientList));
 
 let mockClient = {
 	"clientName": "flyin.com",
@@ -27,8 +27,11 @@ let secondMockClient = {
 	"submitDate": "2016-06-02 13:48:52"
 }
 
-service.getSpecificRequest(mockClient).then(request => console.log(request));
+let mockRequest;
 
-setTimeout(() => {
-	service.getSpecificRequest(secondMockClient).then(request => console.log(request));
-}, 1000)
+service.getSpecificRequest(mockClient)
+	.then(request => {
+		service.formatRequest(request);
+	});
+
+
