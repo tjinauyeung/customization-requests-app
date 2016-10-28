@@ -1,0 +1,44 @@
+@font-face {
+	font-family: 'Milo';
+	src: url('assets/fonts/MiloWeb.woff') format(woff);
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Milo';
+	src: url('assets/fonts/MiloWeb-Medium.woff') format(woff);
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Milo';
+	src: url('assets/fonts/MiloWeb-Light.woff') format(woff);
+	font-weight: 200;
+}
+
+html {
+	font-family: 'Milo', 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+h1 {
+	font-size: 5vh;
+	margin: 60px 0px 30px;
+}
+
+h1:first-child {
+	margin-top: 0;
+}
+
+strong {
+	display: block;
+	font-size: 2.2vh;
+	font-weight: 700;
+	margin: 0;
+	line-height: 1.4;
+}
+
+p {
+	font-size: 2.2vh;
+	margin: 0;
+	margin: 5px 0 15px;
+}

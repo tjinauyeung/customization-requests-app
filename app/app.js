@@ -1,37 +1,52 @@
 import { TypeFormDataService } from './service/TypeFormDataService';
+import _ from 'lodash';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import InputComponent from './components/InputComponent';
+import ClientListComponent from './components/ClientListComponent';
+import LoaderComponent from './components/LoaderComponent';
 
-let service = new TypeFormDataService;
+class App extends React.Component {
 
-// console.log("LOADING....");
+  constructor() {
+    super();
+    this.state = {
+      fullscreen: true,
+      clientlist: []
+    }
+    this.service = new TypeFormDataService;
+  }
 
-// service.getQuestions()
-// 	.then(question => console.log(question));
+  minimizeForm() {
+    this.setState({
+      fullscreen: false
+    })
+  }
 
-// setTimeout(() => {
-// 	service.getQuestions()
-// 		.then(questions => console.log(questions));
-// }, 1000);
+  fetchClientList() {
+    this.service.getClientList()
+      .then(clientlist => this.setState({clientlist}))
+  }
 
-// service.getClientList()
-// 	.then(clientList => console.log(clientList));
-
-let mockClient = {
-	"clientName": "flyin.com",
-	"token": "aa98ea789c273255bad0d3a031e438d2",
-	"submitDate": "2016-05-19 08:03:42"
+  render() {
+    return (
+      <div className="container">
+        <form className={this.state.fullscreen ? '' : 'minimize' }>
+          <img className="logo" src="app/assets/images/logo-usabilla.svg"/>
+          <InputComponent 
+            minimizeForm={this.minimizeForm.bind(this)}
+            fetchClientList={this.fetchClientList.bind(this)}
+          />
+        </form>
+        <main>
+          { _.isEmpty(this.state.clientlist) ? <LoaderComponent /> : <ClientListComponent clientlist={this.state.clientlist} /> }
+        </main>
+        <footer>
+          Type `all` to get list of customization requests.
+        </footer>
+      </div>
+    );
+  }
 }
 
-let secondMockClient = {
-	"clientName": "TUIger",
-	"token": "1cfede95403fbebf6d0cd097d299aa66",
-	"submitDate": "2016-06-02 13:48:52"
-}
-
-let mockRequest;
-
-service.getSpecificRequest(mockClient)
-	.then(request => {
-		service.formatRequest(request);
-	});
-
-
+export default App;

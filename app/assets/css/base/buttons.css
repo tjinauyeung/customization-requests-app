@@ -1,0 +1,17 @@
+.btn {
+	display: block;
+	width: 30vh;
+	margin: 5vh auto 15vh;
+	color: #fff;
+	background: #F4606E;
+	border-radius: 3px;
+	border: none;
+	text-shadow: 0 1.5px #DA4555;
+	padding: 14px 24px;
+	font-size: 2.2vh;
+	text-transform: capitalize;
+	box-shadow: inset 0 -2px 0 rgba(218, 69, 83, 1);
+	font-weight: 400;
+	text-align: center;
+	cursor: pointer;
+}
