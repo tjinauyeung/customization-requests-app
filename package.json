@@ -9,7 +9,9 @@
   },
   "babel": {
     "presets": [
-      "es2015"
+      "es2015",
+      "react",
+      "stage-0"
     ]
   },
   "repository": "https://github.com/electron/electron-quick-start",
@@ -33,6 +35,7 @@
     "electron": "^1.4.1",
     "express": "^4.14.0",
     "postcss-loader": "^1.0.0",
+    "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
@@ -40,6 +43,8 @@
     "webpack-target-electron-renderer": "^0.4.0"
   },
   "dependencies": {
-    "lodash": "^4.16.4"
+    "lodash": "^4.16.4",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   }
 }
