@@ -17,7 +17,7 @@ export class TypeFormDataService {
    * Returns array of responses and caches data
    * @return {Promise.<Array>}
    */
-  cacheData() {
+  fetchData() {
     if (_.isEmpty(this.data)) {
       return fetch(url)
       .then(res => res.text())
@@ -37,7 +37,7 @@ export class TypeFormDataService {
    * @return {Promise.<Array>}
    */
   getResponses() {
-    return this.cacheData().then(data => data.responses)
+    return this.fetchData().then(data => data.responses)
   }
 
   /**
@@ -45,7 +45,7 @@ export class TypeFormDataService {
    * @return {Promise.<Array>}
    */
   getQuestions() {
-    return this.cacheData().then(data => data.questions)
+    return this.fetchData().then(data => data.questions)
   }
 
   /**
@@ -53,10 +53,10 @@ export class TypeFormDataService {
    * @return {Promise.<Array>}
    */
   getClientList() {
-    return this.cacheData().then((data) => {
+    return this.fetchData().then((data) => {
       let clientList = data.responses.map((response) => {
         return {
-          id: response.token,
+          token: response.token,
           clientName: response.answers.textfield_16321742,
           submitDate: response.metadata.date_submit 
         }
@@ -67,18 +67,58 @@ export class TypeFormDataService {
 
   /**
    * Returns one request object
-   * @return {Promise.<Object>}
+   * @param {Object} 
+   * @return {Promise.<Array>}
    */
   getSpecificRequest(client) {
-    return this.cacheData().then((data) => {
-      return data.responses.filter((response) => response.token === client.token && response);
+    return this.fetchData().then((data) => {
+      return this.data.responses.filter((response) => response.token === client.token && response);
     });
   }
 
   /**
-   * Returns new array with client names and submit dates
-   * @return {Promise.<Array>}
+   * Returns new object with formatted request
+   * @param {Object} - receives request object
+   * @return {Promise.<Object>}
    */
-  formatRequest(request) {
+  formatRequest(request) {    
+    return this.getQuestions().then(questions => {
+
+      let answers = request[0].answers;
+      let formattedRequest = {};
+
+      _.forEach(answers, (answer, id) => {
+        _.forEach(questions, (question) => {
+          if (id === question.id) {
+            formattedRequest[question.question] = answer;
+          }
+        });
+      });
+
+      return formattedRequest;
+    });
   }
 }
+
+/**
+ * FOR TESTING PURPOSES
+ */
+
+// let mockClient = {
+//   "clientName": "flyin.com",
+//   "token": "aa98ea789c273255bad0d3a031e438d2",
+//   "submitDate": "2016-05-19 08:03:42"
+// }
+
+// let secondMockClient = {
+//   "clientName": "TUIger",
+//   "token": "1cfede95403fbebf6d0cd097d299aa66",
+//   "submitDate": "2016-06-02 13:48:52"
+// }
+
+// service.getQuestions().then(questions => do something ));
+// service.getClientList().then(clientList => do something ));
+// service.getResponses().then(responses => do something ));
+// service.getSpecificRequest(mockClient)
+//  .then(request => service.formatRequest(request))
+//  .then(formatted => do something);
