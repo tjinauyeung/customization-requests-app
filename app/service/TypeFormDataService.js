@@ -57,8 +57,8 @@ export class TypeFormDataService {
       let clientList = data.responses.map((response) => {
         return {
           token: response.token,
-          clientName: response.answers.textfield_16321742,
-          submitDate: response.metadata.date_submit 
+          clientName: response.answers.textfield_16321742.toLowerCase(),
+          submitDate: response.metadata.date_submit.substring(0, 10) // trimming date to YY/MM/DD
         }
       });
       return clientList;

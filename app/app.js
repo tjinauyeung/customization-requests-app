@@ -1,4 +1,5 @@
 import { TypeFormDataService } from './service/TypeFormDataService';
+import Fuse from './service/FuzzySearchService';
 import _ from 'lodash';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -28,6 +29,10 @@ class App extends React.Component {
       .then(clientlist => this.setState({clientlist}))
   }
 
+  searchClientList(client) {
+    new Fuse(this.state.clientlist, { clientName: client });
+  }
+
   render() {
     return (
       <div className="container">
@@ -36,6 +41,7 @@ class App extends React.Component {
           <InputComponent 
             minimizeForm={this.minimizeForm.bind(this)}
             fetchClientList={this.fetchClientList.bind(this)}
+            searchClientList={this.searchClientList.bind(this)}
           />
         </form>
         <main>

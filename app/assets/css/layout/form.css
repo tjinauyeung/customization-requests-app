@@ -16,9 +16,9 @@ form.minimize input {
 }
 
 form.minimize {
-	height: 20vh;
+	height: 145px;
 	align-items: flex-start;
-	padding: 20px 50px 20px;
+	padding: 20px;
 	transition: all 150ms ease-in-out;
 }
 

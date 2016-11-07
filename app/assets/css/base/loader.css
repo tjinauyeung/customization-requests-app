@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #00A5C9;
   z-index: -1;
 }
 
@@ -17,8 +16,8 @@
   background: #333;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
-  width: 1em;
-  height: 4em;
+  width: 5px;
+  height: 10px;
 }
 .loader {
   color: #333;
@@ -39,7 +38,7 @@
   content: '';
 }
 .loader:before {
-  left: -1.5em;
+  left: 8px;
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
