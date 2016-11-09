@@ -8,7 +8,7 @@ form {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: #00A5C9;
+	background: $usabilla-blue;
 }
 
 form.minimize input {
@@ -24,16 +24,6 @@ form.minimize {
 
 form.minimize.hide {
 	transform: translateY(-100%);
-}
-
-.validation {
-	display: none;
-}
-
-.validation.show {
-	display: block;
-	font-size: 14px;
-	font-weight: 100;
 }
 
 input {

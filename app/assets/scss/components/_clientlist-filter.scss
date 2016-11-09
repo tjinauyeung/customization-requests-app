@@ -1,42 +1,39 @@
-.clientlist__filter ul {
-  list-style-type: none;
-  padding: 0;
-  display: inline-block;
-  color: #00A5C9;
-}
-
 .clientlist__filter {
   font-size: 12px;
   text-align: right;
-}
 
-.clientlist__filter ul {
-  margin: 0;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+    color: #00A5C9;
+    margin: 0;
+  }
 
-.clientlist__filter li {
-  display: inline-block;
-  padding: 12px;
-  min-width: 70px;
-  text-align: center;
-  background: #fff;
-  box-shadow: rgb(200, 210, 218) 0px 2px 0px -1px, 
-              rgba(89, 99, 107, 0.14902) 0px 1px 2px;
-  cursor: pointer;
-}
+ li {
+    display: inline-block;
+    padding: 12px;
+    min-width: 70px;
+    text-align: center;
+    background: #fff;
+    box-shadow: rgb(200, 210, 218) 0px 2px 0px -1px, 
+                rgba(89, 99, 107, 0.14902) 0px 1px 2px;
+    cursor: pointer;
 
-.clientlist__filter li:first-child {
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;  
-}
+    &:first-child {
+      border-bottom-left-radius: 2px;
+      border-top-left-radius: 2px;  
+    }
 
-.clientlist__filter li:last-child {
-  border-left: none;
-  border-bottom-right-radius: 2px;
-  border-top-right-radius: 2px;
-}
+    &:last-child {
+      border-left: none;
+      border-bottom-right-radius: 2px;
+      border-top-right-radius: 2px;
+    }
 
-.clientlist__filter li.is-active {
-  background: #00A5C9;
-  color: #fff;
+    &.is-active {
+      background: #00A5C9;
+      color: #fff;      
+    }
+  }
 }
