@@ -28,7 +28,7 @@ class ClientListComponent extends React.Component {
   }
 
   getClientRequest(client) {
-    return this.props.handleClick(client);
+    return this.props.handleCli(client);
   }
 
   render() {
