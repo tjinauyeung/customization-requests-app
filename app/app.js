@@ -1,14 +1,11 @@
 import { TypeFormDataService } from './service/TypeFormDataService';
-import Fuse from './service/FuzzySearchService';
 import _ from 'lodash';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import InputComponent from './components/InputComponent';
 import ClientListComponent from './components/ClientListComponent';
 import LoaderComponent from './components/LoaderComponent';
 
 class App extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -18,6 +15,9 @@ class App extends React.Component {
     this.service = new TypeFormDataService;
   }
 
+  /**
+   * 
+   */
   minimizeForm() {
     this.setState({
       fullscreen: false
@@ -29,8 +29,17 @@ class App extends React.Component {
       .then(clientlist => this.setState({clientlist}))
   }
 
-  searchClientList(client) {
-    new Fuse(this.state.clientlist, { clientName: client });
+  /**
+   * @param string
+   * @return 
+   */
+  searchClientList(inputValue) {
+    return this.service.getClientList()
+      .then((clientlist) => {
+        this.setState({ 
+          clientlist: _.filter(clientlist, client => _.startsWith(client.clientName, inputValue))
+        });
+      });
   }
 
   handleClick(client) {
@@ -43,9 +52,9 @@ class App extends React.Component {
         <form className={this.state.fullscreen ? '' : 'minimize' }>
           <img className="logo" src="app/assets/images/logo-usabilla.svg"/>
           <InputComponent 
-            minimizeForm={this.minimizeForm.bind(this)}
-            fetchClientList={this.fetchClientList.bind(this)}
-            searchClientList={this.searchClientList.bind(this)}
+            minimizeForm={() => this.minimizeForm()}
+            fetchClientList={() => this.fetchClientList()}
+            searchClientList={input => this.searchClientList(input)}
           />
         </form>
         <main>

@@ -1,26 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {debounce} from 'throttle-debounce';
 
 class InputComponent extends React.Component {
-  componentDidMount(){
-    ReactDOM.findDOMNode(this.refs.inputField).focus(); 
+  constructor() {
+    super();
   }
 
   // TODO: Refactor Keyboard handling
   handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      this.props.minimizeForm();
-    }
+    event.persist();
 
-    if (event.target.value === 'all') {
-      this.props.fetchClientList();
-    }
+    this.props.minimizeForm();
+
+    debounce(500, () => {
+      if (event.target.value === 'all') {
+        return this.props.fetchClientList();
+      } else {
+        return this.props.searchClientList(event.target.value);
+      }
+    })();
   }
 
   render() {
     return (
-      <input ref="inputField" onKeyPress={this.handleKeyPress.bind(this)}/>
+      <input
+        onKeyPress={event => event.key === 'Enter' && event.preventDefault()}
+        onKeyUp={event => this.handleKeyPress(event)} />
     );
   }
 }

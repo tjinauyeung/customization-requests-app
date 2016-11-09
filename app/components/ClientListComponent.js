@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import moment from 'moment';
 
 class ClientListComponent extends React.Component {
   constructor() {
@@ -42,7 +43,22 @@ class ClientListComponent extends React.Component {
         </div>
         <div>
           <ul className="clientlist__list">
-            { this.chooseOrderByType().map(client => <li key={client.token} onClick={() => this.getClientRequest(client)}><span>{client.submitDate}</span> {client.clientName} </li> )}
+            { 
+              this.chooseOrderByType().map((client) => {
+                return (
+                  <li 
+                    className="clientlist__listitem"
+                    key={client.token} 
+                    onClick={() => this.getClientRequest(client)}>
+                    <span className="clientlist__listitem__date">
+                      {moment(client.submitDate, 'YYYY-MM-DD h:mm:ss').format('MMMM Do YYYY')}
+                    </span>
+                    <span className="clientlist__listitem__name">{client.clientName}
+                    </span>
+                  </li>
+                )
+              })
+            }
           </ul>
         </div>
       </div>

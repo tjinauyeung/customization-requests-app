@@ -58,7 +58,7 @@ export class TypeFormDataService {
         return {
           token: response.token,
           clientName: response.answers.textfield_16321742.toLowerCase(),
-          submitDate: response.metadata.date_submit.substring(0, 10) // trimming date to YY/MM/DD
+          submitDate: response.metadata.date_submit
         }
       });
       return clientList;
@@ -99,26 +99,3 @@ export class TypeFormDataService {
     });
   }
 }
-
-/**
- * FOR TESTING PURPOSES
- */
-
-// let mockClient = {
-//   "clientName": "flyin.com",
-//   "token": "aa98ea789c273255bad0d3a031e438d2",
-//   "submitDate": "2016-05-19 08:03:42"
-// }
-
-// let secondMockClient = {
-//   "clientName": "TUIger",
-//   "token": "1cfede95403fbebf6d0cd097d299aa66",
-//   "submitDate": "2016-06-02 13:48:52"
-// }
-
-// service.getQuestions().then(questions => do something ));
-// service.getClientList().then(clientList => do something ));
-// service.getResponses().then(responses => do something ));
-// service.getSpecificRequest(mockClient)
-//  .then(request => service.formatRequest(request))
-//  .then(formatted => do something);
