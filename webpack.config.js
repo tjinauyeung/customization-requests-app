@@ -13,12 +13,12 @@ module.exports = {
       exclude: /node_modules/
     },
     {
-      test: /\.css$/,
-      loader: 'style!css?importLoaders=1!postcss'
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file?name=public/fonts/[name].[ext]'
     },
     {
       test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-      loaders: ['file-loader']
+      loader: 'url-loader?limit=100000'
     },
     {
       test: /\.scss$/,

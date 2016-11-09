@@ -33,6 +33,10 @@ class App extends React.Component {
     new Fuse(this.state.clientlist, { clientName: client });
   }
 
+  handleClick(client) {
+    return console.log(client);
+  }
+
   render() {
     return (
       <div className="container">
@@ -45,7 +49,7 @@ class App extends React.Component {
           />
         </form>
         <main>
-          { _.isEmpty(this.state.clientlist) ? <LoaderComponent /> : <ClientListComponent clientlist={this.state.clientlist} /> }
+          { _.isEmpty(this.state.clientlist) ? <LoaderComponent /> : <ClientListComponent clientlist={this.state.clientlist} handleClick={client => this.handleClick(client)}/> }
         </main>
         <footer>
           Type `all` to get list of customization requests.

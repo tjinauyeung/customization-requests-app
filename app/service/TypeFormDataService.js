@@ -37,7 +37,7 @@ export class TypeFormDataService {
    * @return {Promise.<Array>}
    */
   getResponses() {
-    return this.fetchData().then(data => data.responses)
+    return this.fetchData().then(data => data.responses);
   }
 
   /**
@@ -45,7 +45,7 @@ export class TypeFormDataService {
    * @return {Promise.<Array>}
    */
   getQuestions() {
-    return this.fetchData().then(data => data.questions)
+    return this.fetchData().then(data => data.questions);
   }
 
   /**

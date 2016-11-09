@@ -11,8 +11,6 @@ class InputComponent extends React.Component {
     if (event.key === 'Enter') {
       event.preventDefault();
       this.props.minimizeForm();
-      // console.log(this.refs.inputField.value);
-      // this.props.searchClientList(this.refs.inputField.value);
     }
 
     if (event.target.value === 'all') {
