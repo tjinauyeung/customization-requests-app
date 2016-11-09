@@ -1,0 +1,36 @@
+.clientlist__list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.clientlist__listitem {
+  background: #fff;
+  border-radius: 2px;
+  padding: 30px;
+  box-shadow: rgb(200, 210, 218) 0 2px 0 -1px, 
+              rgba(89, 99, 107, 0.14902) 0 1px 2px;
+  margin-bottom: 6px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: rgba(89, 99, 107, 1) 0 0 1px, 
+                rgb(200, 210, 218) 0 1px 1px 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__date {
+    display: inline-block;
+    width: 145px;
+    font-weight: normal;
+    font-size: 12px;  
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}

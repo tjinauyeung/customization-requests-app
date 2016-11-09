@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
 import ClientListFilterComponent from './ClientListFilterComponent';
+import ClientListItemComponent from './ClientListItemComponent';
 
 class ClientListComponent extends React.Component {
   constructor() {
@@ -38,22 +39,7 @@ class ClientListComponent extends React.Component {
       <div>
         <ClientListFilterComponent orderByDate={this.state.orderByDate} handleClick={boolean => this.setSortedByDateState(boolean)}/>
         <ul className="clientlist__list">
-          { 
-            this.chooseOrderByType().map((client) => {
-              return (
-                <li 
-                  className="clientlist__listitem"
-                  key={client.token} 
-                  onClick={() => this.getClientRequest(client)}>
-                  <span className="clientlist__listitem__date">
-                    {moment(client.submitDate, 'YYYY-MM-DD h:mm:ss').format('MMMM Do YYYY')}
-                  </span>
-                  <span className="clientlist__listitem__name">{client.clientName}
-                  </span>
-                </li>
-              )
-            })
-          }
+          { this.chooseOrderByType().map(client => <ClientListItemComponent handleClick={client => this.getClientRequest(client)} client={client} /> )}
         </ul>
       </div>
     )

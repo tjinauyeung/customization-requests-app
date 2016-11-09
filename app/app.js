@@ -1,6 +1,6 @@
-import { TypeFormDataService } from './service/TypeFormDataService';
 import _ from 'lodash';
 import React from 'react';
+import { TypeFormDataService } from './service/TypeFormDataService';
 import InputComponent from './components/InputComponent';
 import ClientListComponent from './components/ClientListComponent';
 import LoaderComponent from './components/LoaderComponent';
@@ -15,29 +15,25 @@ class App extends React.Component {
     this.service = new TypeFormDataService;
   }
 
-  /**
-   * 
-   */
   minimizeForm() {
-    this.setState({
+    return this.setState({
       fullscreen: false
     })
   }
 
   fetchClientList() {
-    this.service.getClientList()
+    return this.service.getClientList()
       .then(clientlist => this.setState({clientlist}))
   }
 
   /**
-   * @param string
-   * @return 
+   * @param String
    */
-  searchClientList(inputValue) {
+  searchClientList(input) {
     return this.service.getClientList()
       .then((clientlist) => {
         this.setState({ 
-          clientlist: _.filter(clientlist, client => _.startsWith(client.clientName, inputValue))
+          clientlist: _.filter(clientlist, client => _.startsWith(client.clientName, input))
         });
       });
   }

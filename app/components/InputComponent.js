@@ -1,5 +1,5 @@
 import React from 'react';
-import {debounce} from 'throttle-debounce';
+import { debounce } from 'throttle-debounce';
 
 class InputComponent extends React.Component {
   constructor() {
@@ -13,10 +13,12 @@ class InputComponent extends React.Component {
     this.props.minimizeForm();
 
     debounce(500, () => {
-      if (event.target.value === 'all') {
+      let inputValue = event.target.value.toLowerCase();
+
+      if (inputValue === 'all') {
         return this.props.fetchClientList();
       } else {
-        return this.props.searchClientList(event.target.value);
+        return this.props.searchClientList(inputValue);
       }
     })();
   }

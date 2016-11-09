@@ -1,9 +1,8 @@
 import React from 'react';
 
 class ClientListFilterComponent extends React.Component {
-
   handleClick(boolean) {
-    this.props.handleClick(boolean)
+    return this.props.handleClick(boolean)
   }
 
   render() {
