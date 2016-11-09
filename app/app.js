@@ -57,7 +57,7 @@ class App extends React.Component {
           { _.isEmpty(this.state.clientlist) ? <LoaderComponent /> : <ClientListComponent clientlist={this.state.clientlist} handleClick={client => this.handleClick(client)}/> }
         </main>
         <footer>
-          Type `all` to get list of customization requests.
+          Type `all` to get list of all customization requests.
         </footer>
       </div>
     );

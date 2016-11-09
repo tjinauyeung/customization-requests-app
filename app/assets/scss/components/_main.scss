@@ -1,37 +1,27 @@
 body {
-	background: #EEF3F7;
+  background: #EEF3F7;
 }
 
 main {
-	padding: 20px;
-	position: fixed;
-	top: 145px;
-	left: 0;
-	width: 100%;
-	overflow: scroll;
-	height: calc(100vh - 145px - 50px);
-	z-index: -1;
-}
-
-.client-list-item {
-	margin: 0;
-	margin-top: 10px;
-	padding: 30px;
-	font-size: 2.5vh;
-	font-weight: 700;
-	background: #fff;
-	cursor: pointer;
+  padding: 20px;
+  position: fixed;
+  top: 145px;
+  left: 0;
+  width: 100%;
+  overflow: scroll;
+  height: calc(100vh - 145px - 50px);
+  z-index: -1;
 }
 
 .logo {
-	width: 20vh;
-	object-fit: contain;
-	margin-bottom: 5vh;
-}
+  width: 20vh;
+  object-fit: contain;
+  margin-bottom: 5vh;
 
-form.minimize .logo {
-	width: 10vh;
-	object-fit: contain;
-	margin-bottom: 2vh;
-	align-self: center;
+  form.minimize & {
+    width: 10vh;
+    object-fit: contain;
+    margin-bottom: 2vh;
+    align-self: center; 
+  }
 }
