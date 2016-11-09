@@ -8,8 +8,15 @@ class ClientListComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      orderByDate: true
+      orderByDate: true,
+      gridView: false
     }
+  }
+
+  setGridView(boolean) {
+    this.setState({
+      gridView: boolean
+    })
   }
 
   setSortedByDateState(boolean) {
@@ -37,9 +44,9 @@ class ClientListComponent extends React.Component {
   render() {
     return (
       <div>
-        <ClientListFilterComponent orderByDate={this.state.orderByDate} handleClick={boolean => this.setSortedByDateState(boolean)}/>
-        <ul className="clientlist__list">
-          { this.chooseOrderByType().map(client => <ClientListItemComponent handleClick={client => this.getClientRequest(client)} client={client} /> )}
+        <ClientListFilterComponent gridView={this.state.gridView} changeToGridView={boolean => this.setGridView(boolean)} orderByDate={this.state.orderByDate} handleClick={boolean => this.setSortedByDateState(boolean)}/>
+        <ul className={this.state.gridView ? "clientlist__list grid" : "clientlist__list"}>
+          { this.chooseOrderByType().map(client => <ClientListItemComponent gridView={this.state.gridView} key={client.token} handleClick={client => this.getClientRequest(client)} client={client} /> )}
         </ul>
       </div>
     )

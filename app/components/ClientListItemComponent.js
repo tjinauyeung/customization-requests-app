@@ -10,7 +10,6 @@ class ClientListItemComponent extends React.Component {
     return (
       <li 
         className="clientlist__listitem"
-        key={this.props.client.token}
         onClick={() => this.handleClick(this.props.client)}
       >
         <span className="clientlist__listitem__date">

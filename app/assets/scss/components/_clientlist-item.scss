@@ -14,8 +14,9 @@
   cursor: pointer;
 
   &:hover {
-    box-shadow: rgba(89, 99, 107, 1) 0 0 1px, 
-                rgb(200, 210, 218) 0 1px 1px 0;
+    box-shadow: $usabilla-dark-blue 0 0 1px, 
+                rgba(89, 99, 107, 0.14902) 0 1px 1px;
+    color: $usabilla-dark-blue;
   }
 
   &:last-child {
@@ -24,13 +25,38 @@
 
   &__date {
     display: inline-block;
-    width: 145px;
+    max-width: 145px;
+    width: 100%;
     font-weight: normal;
-    font-size: 12px;  
+    font-size: 12px;
   }
 
   &__name {
     font-size: 16px;
     font-weight: bold;
+  }
+}
+
+.clientlist__list.grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  .clientlist__listitem {
+    width: calc(100% / 3 - 8px);
+    margin-right: 12px;
+    margin-bottom: 12px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:nth-child(3n+0) {
+      margin-right: 0;
+    }
+
+    &__name {
+      font-size: 28px;
+      word-break: break-word;
+    }
   }
 }
