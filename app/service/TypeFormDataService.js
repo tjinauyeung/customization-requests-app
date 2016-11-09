@@ -1,5 +1,8 @@
 import _ from 'lodash';
 
+// Uncomment for offline testing
+import typeFormData from './TypeFormData.json';
+
 const config = {
   apiKey: 'e98c3e4cea26c93ad374f49136da7c9aaa646da2',
   uid: 'yhPhjr',
@@ -10,7 +13,10 @@ const url = config.url + config.uid + '?key=' + config.apiKey + '&completed=true
 
 export class TypeFormDataService {
   constructor() {
-    this.data = [];
+    // this.data = [];
+
+    // Uncomment for offline testing
+    this.data = typeFormData;
   }
 
   /**
@@ -24,6 +30,8 @@ export class TypeFormDataService {
       .then(body => JSON.parse(body))
       .then(data => {
         this.data = data;
+        console.log(data);
+
         return this.data;
       });
     }
