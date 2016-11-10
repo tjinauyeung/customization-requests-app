@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       fullscreen: true,
       clientlist: [],
-      currentRequest: {},
+      activeRequest: {},
       currentClient: {},
       scrollDirection: '',
       lastScrollPos: 0
@@ -59,17 +59,17 @@ class App extends React.Component {
     return this.service.getSpecificRequest(client)
       .then((request) => {
         return this.service.formatRequest(request)})
-      .then((currentRequest) => {
+      .then((activeRequest) => {
         return this.setState({
-          currentRequest: currentRequest,
+          activeRequest: activeRequest,
           currentClient: client
         });
       });
   }
 
-  removeCurrentRequest() {
+  removeActiveRequest() {
     return this.setState({
-      currentRequest: {}
+      activeRequest: {}
     })
   }
 
@@ -87,12 +87,12 @@ class App extends React.Component {
           <LoaderComponent /> :
           <MainComponent 
             clientlist={this.state.clientlist}
-            currentRequest={this.state.currentRequest}
+            activeRequest={this.state.activeRequest}
             currentClient={this.state.currentClient}
             getRequest={client => this.getRequest(client)}
-            removeCurrentRequest={() => this.removeCurrentRequest()}
+            removeActiveRequest={() => this.removeActiveRequest()}
           />}
-        <FooterComponent scrollDirection={this.state.scrollDirection}/>
+        <FooterComponent activeRequest={this.state.activeRequest} scrollDirection={this.state.scrollDirection}/>
       </div>
     );
   }
