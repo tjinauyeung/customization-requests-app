@@ -5,7 +5,7 @@ class RequestItemComponent extends React.Component {
     let title;
 
     if (question === 'Your Usabilla username:') {
-      title = 'User Info'
+      title = 'Account Info'
     }
     if (question === 'Have you designed your own buttons?') {
       title = 'Buttons'

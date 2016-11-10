@@ -1,9 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import moment from 'moment';
 
 class ClientListItemComponent extends React.Component {
   handleClick(client) {
-    return this.props.handleClick(client)
+    //TODO Refactor Side effect
+    document.querySelector('.container').scrollTop = 0;
+    return this.props.getRequest(client)
   }
 
   render() {

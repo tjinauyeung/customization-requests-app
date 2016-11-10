@@ -1,10 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
+import { debounce } from 'throttle-debounce';
 import { TypeFormDataService } from './service/TypeFormDataService';
-import InputComponent from './components/InputComponent';
-import ClientListComponent from './components/ClientListComponent';
-import RequestViewComponent from './components/RequestViewComponent';
+import FormComponent from './components/FormComponent';
+import FooterComponent from './components/FooterComponent';
 import LoaderComponent from './components/LoaderComponent';
+import MainComponent from './components/MainComponent';
 
 class App extends React.Component {
   constructor() {
@@ -13,9 +14,25 @@ class App extends React.Component {
       fullscreen: true,
       clientlist: [],
       currentRequest: {},
-      currentClient: {}
-    }
+      currentClient: {},
+      scrollDirection: '',
+      lastScrollPos: 0
+    };
     this.service = new TypeFormDataService;
+  }
+
+  handleScroll(event) {
+    if (this.state.lastScrollPos > event.currentTarget.scrollTop) {
+      this.setState({
+        scrollDirection: 'top',
+        lastScrollPos: event.currentTarget.scrollTop
+      });
+    } else if (this.state.lastScrollPos < event.currentTarget.scrollTop) {
+      this.setState({
+        scrollDirection: 'bottom',
+        lastScrollPos: event.currentTarget.scrollTop
+      });
+    }
   }
 
   minimizeForm() {
@@ -29,9 +46,6 @@ class App extends React.Component {
       .then(clientlist => this.setState({clientlist}))
   }
 
-  /**
-   * @param String
-   */
   searchClientList(input) {
     return this.service.getClientList()
       .then((clientlist) => {
@@ -41,7 +55,7 @@ class App extends React.Component {
       });
   }
 
-  handleClick(client) {
+  getRequest(client) {
     return this.service.getSpecificRequest(client)
       .then((request) => {
         return this.service.formatRequest(request)})
@@ -61,27 +75,24 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <form className={this.state.fullscreen ? '' : 'minimize' }>
-          <img className="logo" src="app/assets/images/logo-usabilla.svg"/>
-          <InputComponent 
-            minimizeForm={() => this.minimizeForm()}
-            fetchClientList={() => this.fetchClientList()}
-            searchClientList={input => this.searchClientList(input)}
-          />
-        </form>
-        <main>
-          {_.isEmpty(this.state.clientlist) ? 
-            <LoaderComponent /> :
-            _.isEmpty(this.state.currentRequest) ?
-              <ClientListComponent 
-                clientlist={this.state.clientlist} 
-                handleClick={client => this.handleClick(client)}/> :
-              <RequestViewComponent client={this.state.currentClient} request={this.state.currentRequest} removeCurrentRequest={() => this.removeCurrentRequest()}/>}
-        </main>
-        <footer>
-          Type `all` to get list of all customization requests.
-        </footer>
+      <div className="container" onScroll={_.throttle((event) => this.handleScroll(event), 3000)}>
+        <FormComponent
+          fullscreen={this.state.fullscreen}
+          scrollDirection={this.state.scrollDirection}
+          minimizeForm={() => this.minimizeForm()}
+          fetchClientList={() => this.fetchClientList()}
+          searchClientList={input => this.searchClientList(input)}
+        />
+        {_.isEmpty(this.state.clientlist) ?
+          <LoaderComponent /> :
+          <MainComponent 
+            clientlist={this.state.clientlist}
+            currentRequest={this.state.currentRequest}
+            currentClient={this.state.currentClient}
+            getRequest={client => this.getRequest(client)}
+            removeCurrentRequest={() => this.removeCurrentRequest()}
+          />}
+        <FooterComponent scrollDirection={this.state.scrollDirection}/>
       </div>
     );
   }

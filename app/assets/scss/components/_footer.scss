@@ -9,10 +9,10 @@ footer {
   background: #333;
   text-align: center;
   color: #fff;
-  transition: all 150ms ease-in-out;
+  transition: all 200ms ease-in-out;
 
-  &.hide {
+  &.is-hidden {
     transform: translateY(100%);
-    transition: all 150ms ease-in-out;
+    transition: all 200ms ease-in-out;
   }
 }

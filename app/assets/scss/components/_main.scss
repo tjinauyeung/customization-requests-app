@@ -1,16 +1,15 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+}
+
 body {
   background: $light-grey;
 }
 
 main {
-  padding: 20px;
-  position: fixed;
-  top: 145px;
-  left: 0;
-  width: 100%;
-  overflow: scroll;
-  height: calc(100vh - 145px - 50px);
-  z-index: -1;
+  padding: 165px 20px 75px;
 }
 
 .logo {
@@ -19,9 +18,18 @@ main {
   margin-bottom: 5vh;
 
   form.minimize & {
-    width: 10vh;
+    width: 85px;
     object-fit: contain;
     margin-bottom: 2vh;
     align-self: center; 
   }
+}
+
+form.is-hidden {
+  transform: translateY(-100%);
+}
+
+footer.is-hidden,
+form.is-hidden {
+  overflow: hidden;
 }

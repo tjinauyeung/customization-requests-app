@@ -9,6 +9,7 @@ form {
 	justify-content: center;
 	align-items: center;
 	background: $usabilla-blue;
+	transition: all 200ms ease-in-out;
 }
 
 form.minimize input {
@@ -19,12 +20,9 @@ form.minimize {
 	height: 145px;
 	align-items: flex-start;
 	padding: 20px;
-	transition: all 150ms ease-in-out;
+	transition: all 200ms ease-in-out;
 }
 
-form.minimize.hide {
-	transform: translateY(-100%);
-}
 
 input {
 	width: 400px;

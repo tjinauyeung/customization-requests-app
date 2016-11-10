@@ -37,8 +37,8 @@ class ClientListComponent extends React.Component {
     return _.orderBy(this.props.clientlist, 'submitDate', 'desc');
   }
 
-  getClientRequest(client) {
-    return this.props.handleClick(client);
+  getRequest(client) {
+    return this.props.getRequest(client);
   }
 
   render() {
@@ -54,7 +54,7 @@ class ClientListComponent extends React.Component {
           {this.chooseOrderByType().map(client => <ClientListItemComponent 
                                                     gridView={this.state.gridView}
                                                     key={client.token}
-                                                    handleClick={client => this.getClientRequest(client)}
+                                                    getRequest={client => this.getRequest(client)}
                                                     client={client}/>)}
         </ul>
       </div>

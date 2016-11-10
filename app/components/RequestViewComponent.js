@@ -11,23 +11,26 @@ class RequestViewComponent extends React.Component {
     return (
       <div>
         <aside className='request__left-column'>
-          <div>
-            <h2>{this.props.client.clientName}</h2>
-            <h4 className='request__date'>{moment(this.props.client.submitDate, 'YYYY-MM-DD h:mm:ss').format('MMMM Do YYYY')}</h4>
-          </div>
-          <div>
-            <h4 className='request__subtitle'>Instructions</h4>
-            <ol>
-              <li>Click on copy</li>
-              <li>Go to phabricator.com</li>
-              <li>Paste in the request</li>
-              <li>Don't forget to add the tag!</li>
-            </ol>
-          </div>
-          <button className='btn btn--med btn--primary' onClick={() => this.handleClick()}>All Requests</button>
-          <button className='btn btn--med btn--cta'>Copy Request</button>
+          <ol>
+            <li onClick={() => this.handleClick()}>
+              <img src='./app/assets/images/icon-back.png' />
+              Go Back
+            </li>
+            <li>
+              <img src='./app/assets/images/icon-copy.png' />
+              Copy Ticket
+            </li>
+            <li>
+              <img src='./app/assets/images/icon-phabricator.png' />
+              Open Phabricator
+            </li>
+          </ol>
         </aside>
         <article className='request__main-column'>
+          <h2 className='request__clientName'>{this.props.client.clientName}</h2>
+          <h4 className='request__date'>
+            Submitted on {moment(this.props.client.submitDate, 'YYYY-MM-DD h:mm:ss').format('MMMM Do YYYY')}
+          </h4>
           {Object.keys(this.props.request)
             .map(question => {
               return <RequestItemComponent key={question} question={question} request={this.props.request} />
