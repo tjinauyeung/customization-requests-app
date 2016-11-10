@@ -3,6 +3,7 @@ import React from 'react';
 import { TypeFormDataService } from './service/TypeFormDataService';
 import InputComponent from './components/InputComponent';
 import ClientListComponent from './components/ClientListComponent';
+import RequestViewComponent from './components/RequestViewComponent';
 import LoaderComponent from './components/LoaderComponent';
 
 class App extends React.Component {
@@ -10,7 +11,9 @@ class App extends React.Component {
     super();
     this.state = {
       fullscreen: true,
-      clientlist: []
+      clientlist: [],
+      currentRequest: {},
+      currentClient: {}
     }
     this.service = new TypeFormDataService;
   }
@@ -32,14 +35,28 @@ class App extends React.Component {
   searchClientList(input) {
     return this.service.getClientList()
       .then((clientlist) => {
-        this.setState({ 
+        return this.setState({ 
           clientlist: _.filter(clientlist, client => _.startsWith(client.clientName, input))
         });
       });
   }
 
   handleClick(client) {
-    return console.log(client);
+    return this.service.getSpecificRequest(client)
+      .then((request) => {
+        return this.service.formatRequest(request)})
+      .then((currentRequest) => {
+        return this.setState({
+          currentRequest: currentRequest,
+          currentClient: client
+        });
+      });
+  }
+
+  removeCurrentRequest() {
+    return this.setState({
+      currentRequest: {}
+    })
   }
 
   render() {
@@ -54,7 +71,13 @@ class App extends React.Component {
           />
         </form>
         <main>
-          { _.isEmpty(this.state.clientlist) ? <LoaderComponent /> : <ClientListComponent clientlist={this.state.clientlist} handleClick={client => this.handleClick(client)}/> }
+          {_.isEmpty(this.state.clientlist) ? 
+            <LoaderComponent /> :
+            _.isEmpty(this.state.currentRequest) ?
+              <ClientListComponent 
+                clientlist={this.state.clientlist} 
+                handleClick={client => this.handleClick(client)}/> :
+              <RequestViewComponent client={this.state.currentClient} request={this.state.currentRequest} removeCurrentRequest={() => this.removeCurrentRequest()}/>}
         </main>
         <footer>
           Type `all` to get list of all customization requests.

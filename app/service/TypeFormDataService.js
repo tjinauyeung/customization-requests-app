@@ -98,7 +98,7 @@ export class TypeFormDataService {
       _.forEach(answers, (answer, id) => {
         _.forEach(questions, (question) => {
           if (id === question.id) {
-            formattedRequest[question.question] = answer;
+            return formattedRequest[question.question] = answer;
           }
         });
       });

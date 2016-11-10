@@ -26,7 +26,7 @@ class ClientListComponent extends React.Component {
   }
 
   chooseOrderByType() {
-    return this.state.orderByDate ? this.orderByDate() : this.orderByAlphabet()
+    return this.state.orderByDate ? this.orderByDate() : this.orderByAlphabet();
   }
 
   orderByAlphabet() {
@@ -38,15 +38,24 @@ class ClientListComponent extends React.Component {
   }
 
   getClientRequest(client) {
-    return this.props.handleCli(client);
+    return this.props.handleClick(client);
   }
 
   render() {
     return (
       <div>
-        <ClientListFilterComponent gridView={this.state.gridView} changeToGridView={boolean => this.setGridView(boolean)} orderByDate={this.state.orderByDate} handleClick={boolean => this.setSortedByDateState(boolean)}/>
+        <ClientListFilterComponent 
+          gridView={this.state.gridView}
+          changeToGridView={boolean => this.setGridView(boolean)}
+          orderByDate={this.state.orderByDate}
+          handleClick={boolean => this.setSortedByDateState(boolean)}
+        />
         <ul className={this.state.gridView ? "clientlist__list grid" : "clientlist__list"}>
-          { this.chooseOrderByType().map(client => <ClientListItemComponent gridView={this.state.gridView} key={client.token} handleClick={client => this.getClientRequest(client)} client={client} /> )}
+          {this.chooseOrderByType().map(client => <ClientListItemComponent 
+                                                    gridView={this.state.gridView}
+                                                    key={client.token}
+                                                    handleClick={client => this.getClientRequest(client)}
+                                                    client={client}/>)}
         </ul>
       </div>
     )

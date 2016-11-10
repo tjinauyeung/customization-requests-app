@@ -9,13 +9,13 @@ class ClientListItemComponent extends React.Component {
   render() {
     return (
       <li 
-        className="clientlist__listitem"
+        className='clientlist__listitem'
         onClick={() => this.handleClick(this.props.client)}
       >
-        <span className="clientlist__listitem__date">
+        <span className='clientlist__listitem__date'>
           { moment(this.props.client.submitDate, 'YYYY-MM-DD h:mm:ss').format('MMMM Do YYYY') }
         </span>
-        <span className="clientlist__listitem__name">
+        <span className='clientlist__listitem__name'>
           {this.props.client.clientName}
         </span>
       </li>

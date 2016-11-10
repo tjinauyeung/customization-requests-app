@@ -1,4 +1,4 @@
-.btn {
+.btn--submit {
 	display: block;
 	width: 30vh;
 	margin: 5vh auto 15vh;
@@ -14,4 +14,35 @@
 	font-weight: 400;
 	text-align: center;
 	cursor: pointer;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px;
+  text-align: center;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: rgb(200, 210, 218) 0px 2px 0px -1px, 
+              rgba(89, 99, 107, 0.14902) 0px 1px 2px;
+  cursor: pointer;
+  border: none;
+
+  &:focus {
+  	outline: none;
+  }
+}
+
+.btn--med {
+  min-width: 110px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.btn--primary {
+	color: $usabilla-blue;
+}
+
+.btn--cta {
+	color: #fff;
+	background: $usabilla-red;
 }
