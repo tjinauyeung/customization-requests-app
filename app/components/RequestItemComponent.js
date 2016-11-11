@@ -4,17 +4,21 @@ class RequestItemComponent extends React.Component {
   addRequestTitle(question) {
     let title;
 
-    if (question === 'Your Usabilla username:') {
-      title = 'Account Info'
-    }
-    if (question === 'Have you designed your own buttons?') {
-      title = 'Buttons'
-    }
-    if (question === 'Would you like your logo in the form?') {
-      title = 'Feedback'
-    }
-    if (question === 'Should campaigns be the same as the feedback form?') {
-      title = 'Campaign'
+    switch(question) {
+      case 'Your Usabilla username:':
+        title = 'Account Info';
+        break;
+      case 'Have you designed your own buttons?':
+        title = 'Buttons';
+        break;
+      case 'Would you like your logo in the form?':
+        title = 'Feedback';
+        break;
+      case 'Should campaigns be the same as the feedback form?':
+        title = 'Campaign';
+        break;
+      default:
+        title = undefined;
     }
 
     return !title || <h2 className='request__title'>{title}</h2>;
