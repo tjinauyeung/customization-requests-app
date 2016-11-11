@@ -27,7 +27,6 @@
     background: #fff;
     box-shadow: rgb(200, 210, 218) 0 2px 0 -1px, 
                 rgba(89, 99, 107, 0.14902) 0 1px 2px;
-    margin-bottom: 15px;
 
     &.is-copied {
       background: $usabilla-blue;
@@ -37,7 +36,7 @@
   li {
     cursor: pointer;
     font-size: 12px;
-    margin: 0 auto 25px;
+    margin: 0 auto 10px;
     max-width: 75px;
     text-align: center;
     display: flex;

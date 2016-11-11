@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-import { debounce } from 'throttle-debounce';
+import ReactDOM from 'react-dom';
 import { TypeFormDataService } from './service/TypeFormDataService';
 import FormComponent from './components/FormComponent';
 import FooterComponent from './components/FooterComponent';
@@ -21,18 +21,13 @@ class App extends React.Component {
     this.service = new TypeFormDataService;
   }
 
-  handleScroll(event) {
-    if (this.state.lastScrollPos > event.currentTarget.scrollTop) {
-      this.setState({
-        scrollDirection: 'top',
-        lastScrollPos: event.currentTarget.scrollTop
+  hideOnScrollDown() {
+    let scrollContainer = ReactDOM.findDOMNode(this.refs.container);
+    let direction = this.state.lastScrollPos > scrollContainer.scrollTop ? 'top' : 'bottom';
+    this.setState({
+        scrollDirection: direction,
+        lastScrollPos: scrollContainer.scrollTop
       });
-    } else if (this.state.lastScrollPos < event.currentTarget.scrollTop) {
-      this.setState({
-        scrollDirection: 'bottom',
-        lastScrollPos: event.currentTarget.scrollTop
-      });
-    }
   }
 
   minimizeForm() {
@@ -75,7 +70,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container" onScroll={_.throttle((event) => this.handleScroll(event), 3000)}>
+      <div className="container" ref='container' onScroll={_.throttle(() => this.hideOnScrollDown(), 4000)}>
         <FormComponent
           fullscreen={this.state.fullscreen}
           scrollDirection={this.state.scrollDirection}
@@ -92,7 +87,10 @@ class App extends React.Component {
             getRequest={client => this.getRequest(client)}
             removeActiveRequest={() => this.removeActiveRequest()}
           />}
-        <FooterComponent activeRequest={this.state.activeRequest} scrollDirection={this.state.scrollDirection}/>
+        <FooterComponent 
+          activeRequest={this.state.activeRequest} 
+          scrollDirection={this.state.scrollDirection}
+        />
       </div>
     );
   }
