@@ -70,7 +70,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container" ref='container' onScroll={_.throttle(() => this.hideOnScrollDown(), 4000)}>
+      <div className='container' ref='container' onScroll={_.throttle(() => this.hideOnScrollDown(), 4000)}>
         <FormComponent
           fullscreen={this.state.fullscreen}
           scrollDirection={this.state.scrollDirection}

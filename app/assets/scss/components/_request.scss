@@ -33,6 +33,16 @@
     }
   }
 
+  button {
+    font-size: 12px;
+    font-family: Helvetica Neue, sans-serif;
+    cursor: pointer;
+
+    &:hover {
+      color: $usabilla-dark-blue;
+    }
+  }
+
   li {
     cursor: pointer;
     font-size: 12px;
@@ -44,11 +54,12 @@
     align-items: center;
 
     &:hover {
+      color: $usabilla-dark-blue;
+
       img {
         box-shadow: $usabilla-dark-blue 0 0 1px, 
                 rgba(89, 99, 107, 0.14902) 0 1px 1px;
       }
-      color: $usabilla-dark-blue;
     }
   }
 }
@@ -72,9 +83,12 @@
   text-transform: capitalize;
 }
 
-.request__title {
+hr {
+  border: none;
   border-top: 1px solid #eee;
-  margin: 40px 0 25px;
-  padding-top: 30px;
+  margin-top: 40px;
+}
+
+.request__title {
   color: $usabilla-dark-blue;
 }

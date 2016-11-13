@@ -1,16 +1,33 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import ClipboardButton from 'react-clipboard.js';
+import toMarkDown from 'to-markdown';
 
 class RequestSideBar extends React.Component {
   constructor() {
     super();
     this.state = {
-      copied: false
+      copied: false,
+      requestToCopy: ''
     }
   }
 
-  copyToMarkDown() {
+  convertToMarkDown() {
+    let content = document.querySelector('.request__main-column').innerHTML;
+    let removeDivTags = {
+      filter: 'div',
+      replacement: content => `${content}`
+    }
+    let removeSpanTags = {
+      filter: 'span',
+      replacement: content => `${content}`
+    }
+    return toMarkDown(content, {converters: [removeDivTags, removeSpanTags]});
+  }
+
+  componentDidMount() {
     this.setState({
-      copied: true
+      requestToCopy: this.convertToMarkDown()
     });
   }
 
@@ -22,12 +39,17 @@ class RequestSideBar extends React.Component {
             <img src='./app/assets/images/icon-back.png' />
             <p>Go Back</p>
           </li>
-          <li onClick={() => this.copyToMarkDown()}>
-            <img 
-              className={this.state.copied ? 'is-copied' : ''}
-              src={this.state.copied? './app/assets/images/icon-copy-white.png' : './app/assets/images/icon-copy.png'}
-            />
-            <p>{this.state.copied ? 'Copied!' : 'Copy Ticket'}</p>
+          <li>
+            <ClipboardButton
+              onClick={() => this.setState({copied: true})}
+              data-clipboard-text={this.state.requestToCopy}
+            >
+              <img 
+                className={this.state.copied ? 'is-copied' : ''}
+                src={this.state.copied? './app/assets/images/icon-copy-white.png' : './app/assets/images/icon-copy.png'}
+              />
+              <p>{this.state.copied ? 'Copied!' : 'Copy Ticket'}</p>
+            </ClipboardButton>
           </li>
           <li>
             <img src='./app/assets/images/icon-phabricator.png' />

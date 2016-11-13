@@ -21,14 +21,14 @@ class RequestItemComponent extends React.Component {
         title = undefined;
     }
 
-    return !title || <h2 className='request__title'>{title}</h2>;
+    return !title || <span><hr/><h4 className='request__title'>{title}</h4></span>;
   }
 
   render() {
     return (
       <div>
         {this.addRequestTitle(this.props.question)}
-        <h3>{this.props.question}</h3>
+        <h6>{this.props.question}</h6>
         <p>{this.props.request[this.props.question]}</p>
       </div>
     )

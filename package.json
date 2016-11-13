@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "customization-app",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A Electron application for viewing Typeform forms",
   "main": "main.js",
   "scripts": {
     "start": "ENV=development electron .",
@@ -18,9 +18,7 @@
   "keywords": [
     "Electron",
     "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "start"
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
@@ -32,7 +30,6 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "classnames": "^2.2.5",
-    "clipboard": "^1.5.15",
     "concurrently": "^3.1.0",
     "css-loader": "^0.25.0",
     "electron": "^1.4.1",
@@ -40,6 +37,7 @@
     "file-loader": "^0.9.0",
     "moment": "^2.15.2",
     "postcss-loader": "^1.1.0",
+    "react-clipboard.js": "^1.0.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "throttle-debounce": "^1.0.1",
