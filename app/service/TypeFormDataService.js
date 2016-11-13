@@ -30,8 +30,6 @@ export class TypeFormDataService {
       .then(body => JSON.parse(body))
       .then(data => {
         this.data = data;
-        console.log(data);
-
         return this.data;
       });
     }

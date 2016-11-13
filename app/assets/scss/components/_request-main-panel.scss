@@ -1,0 +1,34 @@
+.request__main-panel {
+  background: #fff;
+  border-radius: 2px;
+  padding: 30px;
+  box-shadow: rgb(200, 210, 218) 0 2px 0 -1px, 
+              rgba(89, 99, 107, 0.14902) 0 1px 2px;
+  word-break: break-word;
+  width: calc(100% / 3 * 2);
+  margin-left: calc(100% / 6);
+  min-width: 550px;
+}
+
+.request__date {
+  font-size: 14px;
+  font-weight: 400; 
+  font-style: italic;
+  color: #333;
+}
+
+.request__title {
+  color: $usabilla-dark-blue;
+}
+
+.request__clientName {
+  color: $usabilla-dark-blue;
+  font-size: 38px;
+  text-transform: capitalize;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin-top: 40px;
+}

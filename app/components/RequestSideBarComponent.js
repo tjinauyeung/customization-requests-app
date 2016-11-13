@@ -13,7 +13,7 @@ class RequestSideBar extends React.Component {
   }
 
   convertToMarkDown() {
-    let content = document.querySelector('.request__main-column').innerHTML;
+    let content = document.querySelector('.request__main-panel').innerHTML;
     let removeDivTags = {
       filter: 'div',
       replacement: content => `${content}`
@@ -33,7 +33,7 @@ class RequestSideBar extends React.Component {
 
   render() {
     return (
-      <aside className='request__left-column'>
+      <aside className='request__side-bar'>
         <ol>
           <li onClick={() => this.props.removeActiveRequest()}>
             <img src='./app/assets/images/icon-back.png' />
