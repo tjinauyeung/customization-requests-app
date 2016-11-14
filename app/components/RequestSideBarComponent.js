@@ -43,12 +43,14 @@ class RequestSideBar extends React.Component {
             <ClipboardButton
               onClick={() => this.setState({copied: true})}
               data-clipboard-text={this.state.requestToCopy}
-            >
-              <img 
-                className={this.state.copied ? 'is-copied' : ''}
-                src={this.state.copied? './app/assets/images/icon-copy-white.png' : './app/assets/images/icon-copy.png'}
-              />
-              <p>{this.state.copied ? 'Copied!' : 'Copy Ticket'}</p>
+            ><
+              div>
+                <img 
+                  className={this.state.copied ? 'is-copied' : ''}
+                  src={this.state.copied? './app/assets/images/icon-copy-white.png' : './app/assets/images/icon-copy.png'}
+                />
+                <p>{this.state.copied ? 'Copied!' : 'Copy Ticket'}</p>
+              </div>
             </ClipboardButton>
           </li>
           <li>

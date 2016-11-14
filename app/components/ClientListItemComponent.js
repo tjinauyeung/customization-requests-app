@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import moment from 'moment';
 
 class ClientListItemComponent extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   handleClick(client) {
     //TODO Refactor Side effect
     document.querySelector('.container').scrollTop = 0;

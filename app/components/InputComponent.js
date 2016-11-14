@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import _ from 'lodash';
 
 class InputComponent extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   handleKeyPress(event) {
     this.props.minimizeForm();
     let inputValue = ReactDOM.findDOMNode(this.refs.input).value.toLowerCase();
