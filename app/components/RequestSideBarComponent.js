@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ClipboardButton from 'react-clipboard.js';
 import toMarkDown from 'to-markdown';
+import openLinkInBrowser from 'electron-open-link-in-browser';
 
 class RequestSideBar extends React.Component {
   constructor() {
@@ -53,7 +54,7 @@ class RequestSideBar extends React.Component {
               </div>
             </ClipboardButton>
           </li>
-          <li>
+          <li onClick={(event) => openLinkInBrowser('https://phab.intranet.usabilla.nl/maniphest/task/edit/form/2/', event)}>
             <img src='./app/assets/images/icon-phabricator.png' />
             <p>Open Phabricator</p>
           </li>
