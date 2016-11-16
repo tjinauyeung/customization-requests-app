@@ -45,5 +45,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  target: 'electron-renderer'
 };
