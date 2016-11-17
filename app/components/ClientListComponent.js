@@ -47,11 +47,14 @@ class ClientListComponent extends React.Component {
           handleClick={boolean => this.setSortedByDateState(boolean)}
         />
         <ul className={this.state.gridView ? "clientlist__list grid" : "clientlist__list"}>
-          {this.chooseOrderByType().map(client => <ClientListItemComponent 
-                                                    gridView={this.state.gridView}
-                                                    key={client.token}
-                                                    getRequest={client => this.props.getRequest(client)}
-                                                    client={client}/>)}
+        {
+          this.chooseOrderByType().map(client => ({
+          <ClientListItemComponent 
+            gridView={this.state.gridView}
+            key={client.token}
+            getRequest={client => this.props.getRequest(client)}
+            client={client}/> })
+        }
         </ul>
       </div>
     )
