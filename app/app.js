@@ -78,15 +78,15 @@ class App extends React.Component {
           fetchClientList={() => this.fetchClientList()}
           searchClientList={input => this.searchClientList(input)}
         />
-        {_.isEmpty(this.state.clientlist) ?
-          <LoaderComponent /> :
-          <MainComponent 
-            clientlist={this.state.clientlist}
-            activeRequest={this.state.activeRequest}
-            currentClient={this.state.currentClient}
-            getRequest={client => this.getRequest(client)}
-            removeActiveRequest={() => this.removeActiveRequest()}
-          />}
+        {_.isEmpty(this.state.clientlist) 
+          ? <LoaderComponent /> 
+          : <MainComponent 
+              clientlist={this.state.clientlist}
+              activeRequest={this.state.activeRequest}
+              currentClient={this.state.currentClient}
+              getRequest={client => this.getRequest(client)}
+              removeActiveRequest={() => this.removeActiveRequest()}
+            />}
         <FooterComponent 
           activeRequest={this.state.activeRequest} 
           scrollDirection={this.state.scrollDirection}

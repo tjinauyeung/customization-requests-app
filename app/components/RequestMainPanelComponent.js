@@ -10,10 +10,9 @@ class RequestMainPanelComponent extends React.Component {
         <p className='request__date'>
           Submitted on {moment(this.props.client.submitDate, 'YYYY-MM-DD h:mm:ss').format('MMMM Do YYYY')}
         </p>
-        {Object.keys(this.props.request)
-          .map(question => {
-            return <RequestItemComponent key={question} question={question} request={this.props.request} />
-          })
+        {
+          Object.keys(this.props.request)
+            .map(question => <RequestItemComponent key={question} question={question} request={this.props.request} />)
         }
       </article>
     )  
