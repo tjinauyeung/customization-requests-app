@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 // Uncomment for offline testing
-// import typeFormData from './TypeFormData.json';
+import typeFormData from './TypeFormData.json';
 
 const config = {
   apiKey: 'e98c3e4cea26c93ad374f49136da7c9aaa646da2',
@@ -13,10 +13,10 @@ const url = config.url + config.uid + '?key=' + config.apiKey + '&completed=true
 
 export class TypeFormDataService {
   constructor() {
-    this.data = [];
+    // this.data = [];
 
     // Uncomment for offline testing
-    // this.data = typeFormData;
+    this.data = typeFormData;
   }
 
   /**
@@ -33,6 +33,8 @@ export class TypeFormDataService {
         return this.data;
       });
     }
+
+    console.log(this.data);
 
     const service = this;
     return new Promise((resolve) => resolve(service.data));
