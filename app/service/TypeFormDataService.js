@@ -34,8 +34,6 @@ export class TypeFormDataService {
       });
     }
 
-    console.log(this.data);
-
     const service = this;
     return new Promise((resolve) => resolve(service.data));
   }
